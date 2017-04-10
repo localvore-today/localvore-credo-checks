@@ -6,7 +6,19 @@ A collection of Credo checks used by the team at Localvore Today.
 
 #### The Checks
 
-- `Localvore.Check.DebugComment` - Check for commented out debug statements, such as: `# require Logger`, `# Logger.info`, and `# IO.inspect`
+- `Localvore.Check.DebugComment` - Check for commented out debug statements:
+
+```elixir
+defmodule Example do
+  # require Logger
+
+  def important_function(arg1, arg2) do
+    # Logger.info("Calling important_function/2")
+    # IO.inspect({arg1, arg2})
+  end
+end
+```
+
 
 ## Installation
 
