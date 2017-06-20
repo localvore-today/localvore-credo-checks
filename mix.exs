@@ -1,7 +1,7 @@
 defmodule LocalvoreCredoChecks.Mixfile do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.2.0"
 
   def project do
     [app: :localvore_credo_checks,
@@ -20,8 +20,8 @@ defmodule LocalvoreCredoChecks.Mixfile do
 
   defp deps do
     [
-      {:credo, "~> 0.7"},
-      {:faker, "~> 0.6", only: [:dev, :test]}
+      {:credo, "~> 0.8"},
+      {:faker, "~> 0.7", only: [:dev, :test]}
     ]
   end
 

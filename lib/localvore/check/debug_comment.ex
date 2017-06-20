@@ -22,18 +22,11 @@ defmodule Localvore.Check.DebugComment do
     exit_status: 1
 
   @doc false
-  def run(%SourceFile{ast: _ast, lines: lines} = source_file, params \\ []) do
-    # IssueMeta helps us pass down both the source_file and params of a check
-    # run to the lower levels where issues are created, formatted and returned
+  def run(source_file, params \\ []) do
+    lines = SourceFile.lines(source_file)
     issue_meta = IssueMeta.for(source_file, params)
-
-    # we use the `params` parameter and the `Params` module to extract a
-    # configuration parameter from `.credo.exs` while also providing a
-    # default value
     line_regex = Params.get(params, :regex, @default_params)
 
-    # Finally, we can run our custom made analysis.
-    # In this example, we look for lines in source code matching our regex:
     Enum.reduce(lines, [], &process_line(&1, &2, line_regex, issue_meta))
   end
 
